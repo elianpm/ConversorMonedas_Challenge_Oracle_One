@@ -3,12 +3,12 @@ package Clases;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MonedaFunciones {
+public class AnadirMonedas {
 
 	List<Moneda> divisas = new ArrayList<>();
 	
-	public MonedaFunciones() {
-		divisas.add(new Moneda("Selecciona","NAN",1.0));
+	public AnadirMonedas() {
+		//divisas.add(new Moneda("Selecciona","NAN",1.0));
 		divisas.add(new Moneda("Dolar","USD",0.26533381));
 		divisas.add(new Moneda("Euro","EUR",0.24349218));
 		divisas.add(new Moneda("Libra","GBP",0.2137368));
@@ -23,11 +23,7 @@ public class MonedaFunciones {
 	public void sumar2monedas(Moneda a, Moneda b) {
 		System.out.println(a.getValCamb()+b.getValCamb());
 	}
-	/*@Override
-	public String toString() {
-		return divisas.get(2).getAbreviatura();
-		
-	}*/
+
 	
 	
 	
