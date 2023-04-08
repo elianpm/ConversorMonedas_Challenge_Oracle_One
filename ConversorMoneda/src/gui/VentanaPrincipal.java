@@ -24,26 +24,27 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
 	
 	private JLabel lblTituloMenu;
 	private JComboBox cbxOpcionesMenu;
-	private JButton btnSeleccion;
 	
 	String[] OpcionesMenu1 = {"Conversion de Moneda", "Conversor de Temperatura"}; //opciones del combobox
 
 	/**
-	 * Create the frame.
+	 * Create the frame.VENTANA_1
 	 */
 	public VentanaPrincipal() {
+		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaPrincipal.class.getResource("/org/eclipse/jface/dialogs/images/title_banner.png")));
 		setTitle("MENU");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		iniciarComponentes();
 		
-
+		setLocationRelativeTo(Ventana_1);
+		
 	}
 
 	private void iniciarComponentes() {
 		
-		setBounds(100, 100, 327, 204);
+		setBounds(100, 100, 327, 164);
 		Ventana_1 = new JPanel();
 		Ventana_1.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(Ventana_1);
@@ -62,28 +63,21 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
 		cbxOpcionesMenu.setBounds(10, 49, 291, 32);
 		cbxOpcionesMenu.addActionListener(this); 
 		Ventana_1.add(cbxOpcionesMenu);
-		
-		btnSeleccion = new JButton("Seleccionar");
-		btnSeleccion.setBounds(89, 109, 121, 23);
-		btnSeleccion.addActionListener(this); //Ponemos en escucha
-		Ventana_1.add(btnSeleccion);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
 		String selectOptionMenu = (String) cbxOpcionesMenu.getSelectedItem(); 
-		
-		if( selectOptionMenu == OpcionesMenu1[0] )
-			JOptionPane.showMessageDialog(null, "Seleccionaste: " + selectOptionMenu);
+		if( selectOptionMenu == OpcionesMenu1[0] ) {
+			VentanaConvDivisas VCD = new VentanaConvDivisas();
+			VCD.setVisible(true);
+			this.dispose();
+			//JOptionPane.showMessageDialog(null, "Seleccionaste: " + selectOptionMenu);
+			
+		}
 		else if(selectOptionMenu == OpcionesMenu1[1])
 			JOptionPane.showMessageDialog(null, "Seleccionaste: " + selectOptionMenu);
-		/*
-		if(btnSeleccion == e.getSource()) {
-			String seleccionado = (String) cbxOpcionesMenu.getSelectedItem();
-			if(seleccionado == OpcionesMenu1[0])
-				JOptionPane.showMessageDialog(null, "Seleccionaste: " + seleccionado);
-		}*/
 		
 	}
 }
