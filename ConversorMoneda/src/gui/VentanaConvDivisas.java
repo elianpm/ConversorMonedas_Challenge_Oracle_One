@@ -11,7 +11,7 @@ import javax.swing.event.DocumentListener;
 import org.apache.felix.resolver.util.ArrayMap;
 
 import Clases.Moneda;
-import Clases.AnadirMonedas;
+import Clases.MonedasAnadir;
 
 import java.text.DecimalFormat;
 
@@ -55,7 +55,7 @@ public class VentanaConvDivisas extends JFrame implements ActionListener,Documen
 	private boolean activarInvertir=false;
 	Double selectDivisa_bkp=1.0;
 	
-	AnadirMonedas mf = new AnadirMonedas();
+	MonedasAnadir mf = new MonedasAnadir();
 	List<Moneda> coins = mf.getDivisas();
 	String[] Divisas = coins.stream()
 			            .map(Moneda::getNombre)
@@ -154,6 +154,12 @@ public class VentanaConvDivisas extends JFrame implements ActionListener,Documen
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
+		if(btnRegresarMenuPrincipal == e.getSource()) {
+			VentanaPrincipal VP = new VentanaPrincipal();
+			VP.setVisible(true);
+			this.dispose();
+		}
+		
 		cambiarLabelValorMonedas();
 		
 	}
@@ -204,7 +210,10 @@ public class VentanaConvDivisas extends JFrame implements ActionListener,Documen
 		txtConversion_1.setEditable(true);
 		txtConversion_2.setText("");
 		txtConversion_2.setEditable(false);
-		if(!texto.isEmpty()) {
+		
+		texto = mf.validarNumero(texto);
+		
+		if(!texto.isEmpty() && !texto.startsWith("-")) {
 			convertirDivisa(texto, monedaSelect);
 		}
 	}
@@ -228,8 +237,11 @@ public class VentanaConvDivisas extends JFrame implements ActionListener,Documen
 	private void updateText() {
 		cbxDivisas.setSelectedItem(cbxDivisas.getSelectedItem()); //iniciar el tipo de cambio con el primer item de combobox
 		
-		String txtbox1 = txtConversion_1.getText();		
-		if(!txtbox1.isEmpty()){
+		String txtbox1 = txtConversion_1.getText();
+		
+		txtbox1 = mf.validarNumero(txtbox1);
+		
+		if(!txtbox1.isEmpty() && !txtbox1.startsWith("-")){
 			
 			try {
 				convertirDivisa(txtbox1, selectDivisa_bkp);			

@@ -3,11 +3,11 @@ package Clases;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AnadirMonedas {
+public class MonedasAnadir {
 
 	List<Moneda> divisas = new ArrayList<>();
 	
-	public AnadirMonedas() {
+	public MonedasAnadir() {
 		//divisas.add(new Moneda("Selecciona","NAN",1.0));
 		divisas.add(new Moneda("Dolar","USD",0.26533381));
 		divisas.add(new Moneda("Euro","EUR",0.24349218));
@@ -20,28 +20,15 @@ public class AnadirMonedas {
 		return divisas;
 	}
 	
-	public void sumar2monedas(Moneda a, Moneda b) {
-		System.out.println(a.getValCamb()+b.getValCamb());
-	}
+	public String validarNumero(String texto) {
+		texto = texto.replaceAll("[^\\d-]", "");
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		// Verificar si '-' está al inicio del String
+		if (texto.startsWith("-")) {
+			texto = "-" + texto.replaceAll("-", "");
+		}
+		return texto;
+	}
 	
 	
 }

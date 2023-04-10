@@ -73,12 +73,15 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
 			VentanaConvDivisas VCD = new VentanaConvDivisas();
 			VCD.setVisible(true);
 			this.dispose();
-			//JOptionPane.showMessageDialog(null, "Seleccionaste: " + selectOptionMenu);
 			
 		}
-		else if(selectOptionMenu == OpcionesMenu1[1])
-			JOptionPane.showMessageDialog(null, "Seleccionaste: " + selectOptionMenu);
-		
+		else if(selectOptionMenu == OpcionesMenu1[1]) {
+			VentanaTemperatura VCT = new VentanaTemperatura();
+			VCT.setVisible(true);
+			this.dispose();
+			//JOptionPane.showMessageDialog(null, "Seleccionaste: " + selectOptionMenu);
+		}
+			
 	}
 }
 
